@@ -1,0 +1,168 @@
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { API_URL } from "../api"; 
+import logo from "/logo.png";
+
+function Login({ setUserRole }) {
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState({ email: "", password: "" });
+  const [loading, setLoading] = useState(false);
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+
+    try {
+      const response = await fetch(`${API_URL}/auth/login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: formData.email.trim(),
+          password: formData.password,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        let errorMessage = "Invalid email or password";
+
+        if (typeof data.detail === "string") {
+          errorMessage = data.detail;
+        } else if (Array.isArray(data.detail) && data.detail.length > 0) {
+          errorMessage = data.detail.map((err) => `${err.loc[err.loc.length - 1]}: ${err.msg}`).join("\n");
+        }
+
+        alert(errorMessage);
+        return;
+      }
+
+      const user = data.user;
+      const role = user.role ? user.role.toUpperCase() : "";
+
+      sessionStorage.setItem("user", JSON.stringify(user));
+
+      if (setUserRole) {
+        setUserRole(role);
+      }
+
+      alert("Login successfully!");
+
+      switch (role) {
+        case "DRIVER":
+          navigate("/driver");
+          break;
+        case "LOADER":
+          navigate("/loader");
+          break;
+        case "ADMIN":
+          navigate("/admin");
+          break;
+        default:
+          alert("Invalid user role");
+      }
+    } catch (error) {
+      console.error("Login error:", error);
+      alert("Unable to connect to server");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div className="auth-page">
+      <div className="auth-container">
+        <div className="auth-card">
+          <div className="logo">
+            <img src={logo} alt="logo" />
+            <h1>TruckLoad Hub</h1>
+          </div>
+
+          <h2>Login</h2>
+          <p>Login to your account</p>
+
+          <form onSubmit={handleSubmit}>
+            <div className="form-group">
+              <label htmlFor="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="Enter your email" value={formData.email} onChange={handleChange} maxLength={50} required />
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="password">Password</label>
+              <input type="password" id="password" name="password" placeholder="Enter your password" value={formData.password} onChange={handleChange} maxLength={50} required />
+            </div>
+            <button type="submit" className="primary-button" disabled={loading}>
+              {loading ? "Logging in..." : "Login"}
+            </button>
+          </form>
+
+          <p className="auth-link">
+            Don't have an account? <Link to="/register">Register</Link>
+          </p>
+          <Link to="/" className="back-link">
+            ← Back to Home
+          </Link>
+        </div>
+      </div>
+
+      <style>{`
+        .auth-page { width: 100vw; height: 100vh; background: url('/bg.png') no-repeat center center / cover; box-sizing: border-box; overflow: hidden; }
+
+        .auth-container { max-width: 1600px; width: 100%; height: 100%; margin: 0 auto; display: flex; align-items: center; justify-content: flex-end; padding-right: 100px; box-sizing: border-box; }
+
+        .auth-card { width: 100%; max-width: 450px; max-height: calc(100vh - 40px); overflow-y: auto; padding:25px 40px; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.4); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15); border-radius: 16px; box-sizing: border-box; }
+
+        .logo { display: flex; flex-direction: row; align-items: center; justify-content: center; border-radius: 16px; background-color: rgba(255, 255, 255, 0.8); border: 1px solid black; padding: 6px 8px; gap: 10px;}
+        
+        .auth-card img { width: 50px; height: 50px; background: inherit; border-radius: 50%; }
+
+        .auth-card h1 { color: rgba(0, 0, 0); text-align: center;font-size: 22px; font-weight:800;}
+
+        .auth-card h2 { color: #0082d8; text-align: center; margin-top: 4px; }
+
+        .auth-card > p { text-align: center; color: #d3d1d1; margin-bottom: 4px; font-size: 14px;}
+
+        .form-group { margin-bottom: 8px; color: #d3d1d1; }
+
+        .form-group label { display: block; margin-bottom: 4px; font-weight: 600; font-size: 12px; }
+
+        .form-group input { width: 100%; padding: 10px; background: rgba(255, 255, 255, 0.6); border: 1px solid rgba(255, 255, 255, 0.5); border-radius: 6px; font-size: 12px; font-family: inherit; box-sizing: border-box; }
+
+        .form-group input:focus { outline: none; border-color: #222; background: rgba(255, 255, 255, 0.85); }
+
+        .primary-button { width: 100%; padding: 10px; border: none; border-radius: 8px; background: #298ce2; color: #ffffff; font-weight: bold; cursor: pointer; font-size: 16px; margin-top: 10px; }
+
+        .primary-button:hover { background: #60a8cc; color: #051329; }
+
+        .primary-button:disabled { background: #888; cursor: not-allowed; }
+
+        .auth-link { margin-top: 6px; text-align: center; }
+
+        .auth-link a { color: #9c9393; font-weight: 600; text-decoration: none; }
+
+        .auth-link a:hover { color: #c8c6c6; text-decoration: underline; }
+
+        .back-link { display: block; text-align: center;  color: #d3d1d1; text-decoration: none;font-size: 14px; }
+
+        .back-link:hover { text-decoration: underline; color: #9c9393; }
+
+        .auth-card::-webkit-scrollbar { width: 6px; }
+
+        .auth-card::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.1); border-radius: 10px; }
+
+        .auth-card::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.4); border-radius: 10px; }
+
+        @media (max-width: 768px) { .auth-container { justify-content: center; padding-right: 0; } .auth-card { max-width: 90%; } }
+      `}</style>
+    </div>
+  );
+}
+
+export default Login;
