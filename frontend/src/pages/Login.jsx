@@ -137,13 +137,13 @@ function Login({ setUserRole }) {
 
         .form-group input:focus { outline: none; border-color: #222; background: rgba(255, 255, 255, 0.85); }
 
-        .primary-button { width: 100%; padding: 10px; border: none; border-radius: 8px; background: #298ce2; color: #ffffff; font-weight: bold; cursor: pointer; font-size: 16px; margin-top: 10px; }
+        .primary-button { width: 100%; padding: 10px; border: none; border-radius: 8px; background: #298ce2; color: #ffffff; font-weight: bold; cursor: pointer; font-size: 16px; margin-top: 4px; }
 
         .primary-button:hover { background: #60a8cc; color: #051329; }
 
         .primary-button:disabled { background: #888; cursor: not-allowed; }
 
-        .auth-link { margin-top: 6px; text-align: center; }
+        .auth-link { margin-top: 4px; text-align: center; }
 
         .auth-link a { color: #9c9393; font-weight: 600; text-decoration: none; }
 

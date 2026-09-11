@@ -174,7 +174,7 @@ function Contact() {
 
         .primary-button:disabled { opacity: 0.6; cursor: not-allowed; }
 
-        .back-link { display: block; text-align: center; margin-top: 6px; color: #d3d1d1; text-decoration: none; font-size: 14px; }
+        .back-link { display: block; text-align: center; margin-top: 4px; color: #d3d1d1; text-decoration: none; font-size: 14px; }
 
         .back-link:hover { text-decoration: underline; color: #9c9393; }
 

@@ -366,13 +366,13 @@ function Register() {
 
         .profile-section h3 { margin-bottom:4px; font-size: 16px; color: #329fe7; }
 
-        .primary-button { width: 100%; padding: 10px; border: none; border-radius: 8px; background: #298ce2; color: #ffffff; font-weight: bold; cursor: pointer; font-size: 16px;  margin-top:10px; }
+        .primary-button { width: 100%; padding: 10px; border: none; border-radius: 8px; background: #298ce2; color: #ffffff; font-weight: bold; cursor: pointer; font-size: 16px;  margin-top:4px; }
 
         .primary-button:hover:not(:disabled) { background: #60a8cc; color: #051329; }
 
         .primary-button:disabled { opacity: 0.6; cursor: not-allowed; }
 
-        .auth-link { margin-top:6px; text-align: center; }
+        .auth-link { margin-top:4px; text-align: center; }
 
         .auth-link a { color: #9c9393; font-weight: 600; text-decoration: none; }
 
