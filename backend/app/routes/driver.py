@@ -35,7 +35,7 @@ def get_available_loads(driver_id: int = None, db: Session = Depends(get_db)):
     loads = db.execute(query, {"driver_id": driver_id}).mappings().all()
     return [dict(load) for load in loads]
 
-@router.post("/deals", status_code=status.HTTP_201_CREATED)
+@router.post("/deals/create", status_code=status.HTTP_201_CREATED)
 def create_deal(data: DealCreate, db: Session = Depends(get_db)):
     # Extract IDs safely regardless of frontend key casing (snake_case vs camelCase)
     load_id = getattr(data, "load_id", None) or getattr(data, "loadId", None)
