@@ -8,8 +8,8 @@ app = FastAPI(title="TL Hub Backend API", version="1.0.0")
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        "http://localhost:5173",
-        "http://127.0.0.1:5173",
+        "https://truckloadhub.onrender.com/",
+        "https://truckloadhub.onrender.com",
      
     ],
     allow_credentials=True,
