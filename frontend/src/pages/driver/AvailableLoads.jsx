@@ -72,7 +72,7 @@ function AvailableLoads() {
 
     try {
       setSubmittingLoadId(currentLoadId);
-      const response = await fetch(`${API_URL}/driver/deals`, {
+      const response = await fetch(`${API_URL}/driver/deals/create`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
