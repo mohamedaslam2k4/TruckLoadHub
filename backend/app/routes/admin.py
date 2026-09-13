@@ -105,7 +105,7 @@ def get_pending_users(db: Session = Depends(get_db)):
 
 
 # 4. APPROVE / REJECT USER VERIFICATION
-@router.put("/verification/{user_id}")
+@router.put("/verification/{user_id}/verify")
 def update_verification(user_id: int, status: str, db: Session = Depends(get_db)):
     if status not in ["VERIFIED", "REJECTED"]:
         raise HTTPException(
