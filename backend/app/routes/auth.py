@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Depends, HTTPException, status
-from passlib.context import CryptContext
+from pwdlib import PasswordHash
 from sqlalchemy import text
 from sqlalchemy.orm import Session
 
@@ -9,7 +9,7 @@ from app.schemas import LoginRequest, RegisterRequest
 router = APIRouter(prefix="/auth", tags=["Authentication"])
 
 # Setup password hashing
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+pwd_context = PasswordHash.recommended()
 
 
 def hash_password(password: str) -> str:
