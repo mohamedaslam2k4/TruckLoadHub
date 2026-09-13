@@ -30,6 +30,8 @@ function Card({ title, value, children }) {
           font-weight: 700;
           color: #222;
         }
+        @media screen and (max-width: 768px) { .dashboard-card { padding: 10px; } .card-value { font-size: 24px; } }
+@media screen and (max-width: 480px) { .dashboard-card h3 { font-size: 13px; } .card-value { font-size: 20px; } }
       `}</style>
 
     </div>
