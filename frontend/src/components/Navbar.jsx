@@ -93,6 +93,8 @@ function Navbar({ role, setUserRole }) {
         .logout-button:hover {
           background: #666;
         }
+        @media screen and (max-width: 768px) { .dashboard-navbar { padding: 0 15px; height: 55px; } .navbar-title { font-size: 16px; } .logo { font-size: 16px; } .logo img { width: 36px; height: 36px; } .logout-button { padding: 6px 10px; font-size: 12px; } }
+@media screen and (max-width: 480px) { .navbar-title { display: none; } .logo { font-size: 14px; } }
       `}</style>
     </nav>
   );
