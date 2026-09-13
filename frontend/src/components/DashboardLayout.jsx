@@ -32,6 +32,8 @@ function DashboardLayout({ role, children }) {
           padding:6px 12px;
           min-width: 0;
         }
+        @media screen and (max-width: 768px) { .dashboard-body { flex-direction: column; } .dashboard-content { padding: 8px; width: 100%; box-sizing: border-box; } }
+@media screen and (max-width: 480px) { .dashboard-content { padding: 4px; } }
       `}</style>
     </div>
   );
