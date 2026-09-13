@@ -340,9 +340,7 @@ function ManageLoads() {
         .empty-state { grid-column: 1 / -1; background: white; border: 1px solid #ddd; border-radius: 8px; padding: 40px; text-align: center; }
         .empty-state h3 { margin-bottom: 8px; }
         .empty-state p { margin: 0; color: #666; }
-        @media screen and (max-width: 1024px) { .form-grid { grid-template-columns: repeat(2, 1fr); } }
-@media screen and (max-width: 768px) { .page-header { flex-direction: column; align-items: stretch; gap: 12px; } .toggle-button { width: 100%; text-align: center; } .loads-grid { grid-template-columns: 1fr; } .load-header { flex-wrap: wrap; gap: 8px; } .route { font-size: 14px; } }
-@media screen and (max-width: 480px) { .form-grid { grid-template-columns: 1fr; } .load-details { grid-template-columns: 1fr; } .price { flex-direction: column; gap: 4px; padding: 10px; text-align: center; } .description { flex-direction: column; } }
+      
       `}</style>
     </div>
   );
