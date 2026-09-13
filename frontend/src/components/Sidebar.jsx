@@ -273,6 +273,8 @@ function Sidebar({ role }) {
           color: #222;
           font-weight: bold;
         }
+        @media screen and (max-width: 768px) { .dashboard-sidebar { width: 100%; height: auto; position: relative; top: 0; border-right: none; border-bottom: 1px solid #ddd; padding: 8px; } .sidebar-top { flex-direction: row; align-items: center; justify-content: space-between; } .sidebar-title { display: none; } .sidebar-links { flex-direction: row; flex-wrap: wrap; gap: 8px; } .sidebar-bottom { display: none; } }
+       @media screen and (max-width: 480px) { .sidebar-links { justify-content: space-around; width: 100%; } .sidebar-link { padding: 6px 8px; font-size: 12px; } }
       `}</style>
     </aside>
   );
