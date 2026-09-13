@@ -37,7 +37,7 @@ function Verification() {
       setUpdatingId(userId);
 
       const response = await fetch(
-        `${API_URL}/admin/verification/${userId}?status=${status}`,
+        `${API_URL}/admin/verification/${userId}?status=${status}/verify`,
         { method: "PUT" }
       );
 
