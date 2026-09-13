@@ -1,5 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException, status
 from pwdlib import PasswordHash
+from pwdlib.hashers.bcrypt import BcryptHasher
 from sqlalchemy import text
 from sqlalchemy.orm import Session
 
@@ -8,8 +9,10 @@ from app.schemas import LoginRequest, RegisterRequest
 
 router = APIRouter(prefix="/auth", tags=["Authentication"])
 
-# Setup password hashing
-pwd_context = PasswordHash.recommended()
+
+
+pwd_context = PasswordHash(hashers=[BcryptHasher()])
+
 
 
 def hash_password(password: str) -> str:
