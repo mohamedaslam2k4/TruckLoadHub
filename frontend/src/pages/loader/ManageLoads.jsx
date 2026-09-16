@@ -21,7 +21,6 @@ function ManageLoads() {
     description: "",
   });
 
-  
   const currentUser = JSON.parse(sessionStorage.getItem("user") || "{}");
   const loaderId = currentUser.profileId;
 
@@ -54,10 +53,17 @@ function ManageLoads() {
   }, [loaderId]);
 
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+    const { name, value } = e.target;
+
+    // Auto-capitalize general text fields to Title Case
+    if (["pickup", "destination", "loadType", "description"].includes(name)) {
+      const formattedValue = value.toLowerCase().replace(/\b\w/g, (c) => c.toUpperCase());
+      setFormData((prev) => ({ ...prev, [name]: formattedValue }));
+      return;
+    }
+
+    // Keep numbers, dates, and select options intact
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleCreateLoad = async (e) => {
@@ -158,16 +164,16 @@ function ManageLoads() {
           <button type="button" className="toggle-button" onClick={() => setShowForm(!showForm)}>
             {showForm ? "- Hide Create Load " : "+ Create New Load "}
           </button>
-            <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-              <select className="filter-select" value={filter} onChange={(e) => setFilter(e.target.value)}>
-                <option value="ALL">All Loads</option>
-                <option value="AVAILABLE">Available</option>
-                <option value="BOOKED">Booked</option>
-                <option value="COMPLETED">Completed</option>
-                 <option value="CANCELLED">Cancelled</option>
-              </select>
-              <span className="load-count">{filteredLoads.length} Loads</span>
-            </div>
+          <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+            <select className="filter-select" value={filter} onChange={(e) => setFilter(e.target.value)}>
+              <option value="ALL">All Loads</option>
+              <option value="AVAILABLE">Available</option>
+              <option value="BOOKED">Booked</option>
+              <option value="COMPLETED">Completed</option>
+              <option value="CANCELLED">Cancelled</option>
+            </select>
+            <span className="load-count">{filteredLoads.length} Loads</span>
+          </div>
         </div>
 
         {/* CREATE LOAD */}
@@ -193,18 +199,18 @@ function ManageLoads() {
                     <label htmlFor="truckType">Truck Type</label>
                     <select id="truckType" name="truckType" value={formData.truckType} onChange={handleChange} required>
                       <option value="" disabled>Select truck type</option>
-                      <option value="pickup">Pickup Truck</option>
-                      <option value="box_truck">Box / Delivery Truck</option>
-                      <option value="flatbed">Flatbed Truck</option>
-                      <option value="semi_trailer">Semi-Trailer / Tractor-Trailer</option>
-                      <option value="dump_truck">Dump Truck</option>
+                      <option value="Pickup Truck">Pickup Truck</option>
+                      <option value="Box Truck">Box / Delivery Truck</option>
+                      <option value="Flatbed">Flatbed Truck</option>
+                      <option value="Semi-Trailer Truck">Semi-Trailer / Tractor-Trailer</option>
+                      <option value="Dump Truck">Dump Truck</option>
                     </select>
                   </div>
                   <div className="form-group">
                     <label htmlFor="weight">Weight (Tons)</label>
                     <input type="number" id="weight" name="weight" placeholder="Eg: 10" min="0" max="10000" step="1" value={formData.weight} onChange={handleChange} required />
                   </div>
-                 
+
                   <div className="form-group">
                     <label htmlFor="pickupDate">Pickup Date</label>
                     <input type="date" id="pickupDate" name="pickupDate" value={formData.pickupDate} onChange={handleChange} min={todayStr} required />
@@ -234,7 +240,7 @@ function ManageLoads() {
         <div className="my-loads-section">
           <div className="loads-grid">
             {loading ? (
-              <p >Loading your loads...</p>
+              <p>Loading your loads...</p>
             ) : filteredLoads.length === 0 ? (
               <div className="empty-state">
                 <h3>No Loads Found</h3>
@@ -292,7 +298,7 @@ function ManageLoads() {
                     )}
 
                     {status === "AVAILABLE" && (
-                      <button type="button" className="cancel-button" disabled={isCancelling}  onClick={() => handleCancelLoad(currentLoadId)} >
+                      <button type="button" className="cancel-button" disabled={isCancelling} onClick={() => handleCancelLoad(currentLoadId)}>
                         {isCancelling ? "Cancelling..." : "Cancel Load"}
                       </button>
                     )}
@@ -347,7 +353,6 @@ function ManageLoads() {
         .empty-state { grid-column: 1 / -1; background: white; border: 1px solid #ddd; border-radius: 8px; padding: 40px; text-align: center; }
         .empty-state h3 { margin-bottom: 8px; }
         .empty-state p { margin: 0; color: #666; }
-      
       `}</style>
     </div>
   );
