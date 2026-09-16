@@ -51,6 +51,7 @@ function Register() {
   const handleChange = (e) => {
     const { name, value } = e.target;
 
+    // Handle phone field strictly for numbers
     if (name === "phone") {
       const digitsOnly = value.replace(/\D/g, "");
       if (digitsOnly.length > 10) return;
@@ -58,11 +59,20 @@ function Register() {
       return;
     }
 
-    if (name === "gstNumber") {
-      setFormData((prev) => ({ ...prev, gstNumber: value.toUpperCase() }));
+    // Force uppercase for identification codes
+    if (["gstNumber", "licenseNumber", "truckNumber"].includes(name)) {
+      setFormData((prev) => ({ ...prev, [name]: value.toUpperCase() }));
       return;
     }
 
+    // Auto-capitalize text input fields to Title Case
+    if (["name", "city", "companyName", "businessType", "address"].includes(name)) {
+      const formattedValue = value.toLowerCase().replace(/\b\w/g, (c) => c.toUpperCase());
+      setFormData((prev) => ({ ...prev, [name]: formattedValue }));
+      return;
+    }
+
+    // Keep email, passwords, numbers, and dropdowns unchanged
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
@@ -253,11 +263,11 @@ function Register() {
                 <label htmlFor="truckType">Truck Type</label>
                 <select id="truckType" name="truckType" value={formData.truckType} onChange={handleChange} required>
                   <option value="" disabled>Select truck type</option>
-                  <option value="pickup">Pickup Truck</option>
-                  <option value="box_truck">Box / Delivery Truck</option>
-                  <option value="flatbed">Flatbed Truck</option>
-                  <option value="semi_trailer">Semi-Trailer / Tractor-Trailer</option>
-                  <option value="dump_truck">Dump Truck</option>
+                  <option value="Pickup Truck">Pickup Truck</option>
+                  <option value="Box Truck">Box / Delivery Truck</option>
+                  <option value="Flatbed Truck">Flatbed Truck</option>
+                  <option value="Semi Trailer">Semi-Trailer / Tractor-Trailer</option>
+                  <option value="Dump Truck">Dump Truck</option>
                 </select>
               </div>
 
@@ -329,65 +339,35 @@ function Register() {
 
       <style>{`
         .auth-page { position: relative; max-width: 100%; margin: 0 auto; height: 100vh; padding-left: 100px; justify-content: flex-start; display: flex; align-items: center; box-sizing: border-box; overflow: hidden; }
-
         .auth-page::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: url('/bg.png') no-repeat center center / cover; transform: scaleX(-1); z-index: -1; }
-
         .auth-card { width: 100%; max-width: 500px; max-height: calc(100vh - 40px); overflow-y: auto; padding: 25px 40px; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.4); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15); border-radius: 16px; box-sizing: border-box; }
-
         .logo { display: flex; flex-direction: row; align-items: center; justify-content: center; border-radius: 16px; background-color: rgba(255, 255, 255, 0.8); border: 1px solid black; padding: 6px 8px; gap: 10px;}
-
         .auth-card img { width: 50px; height: 50px; background: inherit; border-radius: 50%; }
-
         .auth-card h1 { color: rgba(0, 0, 0); text-align: center; font-size: 22px; font-weight: 800; }
-
         .auth-card h2 { color: #0082d8; text-align: center; margin-top:4px; }
-
         .auth-card > p { text-align: center; color: #d3d1d1; margin-bottom:4px;font-size: 14px; }
-
         .form-group { margin-bottom:8px; color: #d3d1d1; }
-
         .form-group label { display: block; margin-bottom: 4px; font-weight: 600; font-size: 12px; }
-
         .form-group input, .form-group select { width: 100%; padding: 10px; background: rgba(255, 255, 255, 0.6); border: 1px solid rgba(255, 255, 255, 0.5); border-radius: 6px; font-size: 12px; font-family: inherit; box-sizing: border-box; }
-
         .form-group input:focus, .form-group select:focus { outline: none; border-color: #222; background: rgba(255, 255, 255, 0.85); }
-
         .time-picker-container { display: flex; align-items: center; gap: 10px; }
-
         .time-input-wrapper { flex: 1; }
-
         .time-input-wrapper input[type="time"] { width: 100%; padding: 10px; background: rgba(255, 255, 255, 0.6); border: 1px solid rgba(255, 255, 255, 0.5); border-radius: 6px; font-size: 12px; font-family: inherit; box-sizing: border-box; color: #333; }
-
         .time-input-wrapper input[type="time"]::-webkit-calendar-picker-indicator { cursor: pointer; filter: invert(0.2); }
-
         .time-separator { color: #d3d1d1; font-weight: 600; font-size: 12px; }
-
         .profile-section { margin: 8px 0; padding: 10px; background: rgba(255, 255, 255, 0.15); border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 8px; }
-
         .profile-section h3 { margin-bottom:4px; font-size: 16px; color: #329fe7; }
-
         .primary-button { width: 100%; padding: 10px; border: none; border-radius: 8px; background: #298ce2; color: #ffffff; font-weight: bold; cursor: pointer; font-size: 16px;  margin-top:4px; }
-
         .primary-button:hover:not(:disabled) { background: #60a8cc; color: #051329; }
-
         .primary-button:disabled { opacity: 0.6; cursor: not-allowed; }
-
         .auth-link { margin-top:4px; text-align: center; }
-
         .auth-link a { color: #9c9393; font-weight: 600; text-decoration: none; }
-
         .auth-link a:hover { color: #c8c6c6; text-decoration: underline; }
-
         .back-link { display: block; text-align: center; color: #d3d1d1; text-decoration: none; font-size: 14px; }
-
         .back-link:hover { text-decoration: underline; color: #9c9393; }
-
         .auth-card::-webkit-scrollbar { width: 6px; }
-
         .auth-card::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.1); border-radius: 10px; }
-
         .auth-card::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.4); border-radius: 10px; }
-
         @media (max-width: 768px) { .auth-page { padding-left: 0; justify-content: center; } .auth-card { max-width: 90%; } }
       `}</style>
     </div>
