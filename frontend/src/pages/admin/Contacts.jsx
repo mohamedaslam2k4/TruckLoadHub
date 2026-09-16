@@ -144,7 +144,7 @@ function Contacts() {
                         <div className="driver-title">Contact Info</div>
                         <div className="driver-row">
                           <span>Email:</span>
-                          <strong>{contact.email || "N/A"}</strong>
+                          <strong title={contact.email || "N/A"}>{contact.email || "N/A"}</strong>
                         </div>
                         <div className="driver-row">
                           <span>Phone No:</span>
@@ -207,15 +207,16 @@ function Contacts() {
         .status { padding: 4px 8px; border-radius: 5px; font-size: 12px; font-weight: 600; white-space: nowrap; text-transform: uppercase; }
         .pending { background: #fef3c7; color: #92400e; }
         .verified { background: #dbeafe; color: #1d4ed8; }
-        .driver-info { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 8px; background: #f5f6f8; border-radius: 7px; margin-bottom: 8px; }
+        .driver-info { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; padding: 8px; background: #f5f6f8; border-radius: 7px; margin-bottom: 8px; }
+        .info-column { min-width: 0; }
         .info-column:first-child { padding-right: 12px; border-right: 1px solid #e0e0e0; }
         .driver-title { font-size: 14px; font-weight: 700; margin-bottom: 6px; color: #222; text-decoration: underline; text-align: center; }
-        .driver-row { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 4px; }
+        .driver-row { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 4px; min-width: 0; }
         .driver-row:last-child { margin-bottom: 0; }
-        .driver-row span { color: #666; font-size: 12px; }
-        .driver-row strong { font-size: 12px; text-align: right; color: #111; word-break: break-word; }
+        .driver-row span { color: #666; font-size: 12px; flex-shrink: 0; }
+        .driver-row strong { font-size: 12px; text-align: right; color: #111; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; flex-grow: 1; min-width: 0; }
         .message-box { padding: 8px 10px; background: #ffffff; border: 1px solid #e2e2e2; border-radius: 6px; margin-bottom: 8px; }
-        .message-label { display: block; font-size: 10px; font-weight: 700; color: #666; text-transform: uppercase; margin-bottom: 2px; }
+        .message-label { display: block; font-size: 10px; font-weight: 700; color: #666;  margin-bottom: 2px; }
         .message-text { margin: 0; font-size: 13px; color: #333; line-height: 1.4; word-break: break-word; }
         .action-footer { display: flex; justify-content: center; align-items: center; }
         .resolve-btn { width: 100%; padding: 8px 0; border: none; border-radius: 6px; background: #1d4ed8; color: white; font-size: 14px; font-weight: 600; cursor: pointer; transition: background 0.2s; }
