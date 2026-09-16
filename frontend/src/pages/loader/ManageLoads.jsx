@@ -189,9 +189,16 @@ function ManageLoads() {
                     <label htmlFor="loadType">Load Type</label>
                     <input type="text" id="loadType" name="loadType" placeholder="Eg: General" value={formData.loadType} onChange={handleChange} maxLength={30} required />
                   </div>
-                   <div className="form-group">
+                  <div className="form-group">
                     <label htmlFor="truckType">Truck Type</label>
-                    <input type="text" id="truckType" name="truckType" placeholder="Eg: Open" value={formData.truckType} onChange={handleChange} maxLength={30} required />
+                    <select id="truckType" name="truckType" value={formData.truckType} onChange={handleChange} required>
+                      <option value="" disabled>Select truck type</option>
+                      <option value="pickup">Pickup Truck</option>
+                      <option value="box_truck">Box / Delivery Truck</option>
+                      <option value="flatbed">Flatbed Truck</option>
+                      <option value="semi_trailer">Semi-Trailer / Tractor-Trailer</option>
+                      <option value="dump_truck">Dump Truck</option>
+                    </select>
                   </div>
                   <div className="form-group">
                     <label htmlFor="weight">Weight (Tons)</label>
