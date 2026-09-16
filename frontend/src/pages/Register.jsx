@@ -204,12 +204,12 @@ function Register() {
         <form onSubmit={handleSubmit}>
           <div className="form-group">
             <label htmlFor="name">Full Name</label>
-            <input type="text" id="name" name="name" placeholder="Enter your name" value={formData.name} onChange={handleChange} maxLength={50} required />
+            <input type="text" id="name" name="name" placeholder="Enter your name" value={formData.name} onChange={handleChange} maxLength={30} required />
           </div>
 
           <div className="form-group">
             <label htmlFor="email">Email</label>
-            <input type="email" id="email" name="email" placeholder="Enter your email" value={formData.email} onChange={handleChange} maxLength={50} required />
+            <input type="email" id="email" name="email" placeholder="Enter your email" value={formData.email} onChange={handleChange} maxLength={30} required />
           </div>
 
           <div className="form-group">
@@ -219,7 +219,7 @@ function Register() {
 
           <div className="form-group">
             <label htmlFor="city">City</label>
-            <input type="text" id="city" name="city" placeholder="Enter your city" value={formData.city} onChange={handleChange} maxLength={30} required />
+            <input type="text" id="city" name="city" placeholder="Enter your city" value={formData.city} onChange={handleChange} maxLength={15} required />
           </div>
 
           <div className="form-group">
@@ -236,7 +236,7 @@ function Register() {
               <h3>Driver Information</h3>
               <div className="form-group">
                 <label htmlFor="licenseNumber">License Number</label>
-                <input type="text" id="licenseNumber" name="licenseNumber" placeholder="Enter license number" value={formData.licenseNumber} onChange={handleChange} maxLength={20} required />
+                <input type="text" id="licenseNumber" name="licenseNumber" placeholder="Enter license number" value={formData.licenseNumber} onChange={handleChange} maxLength={15} required />
               </div>
 
               <div className="form-group">
@@ -273,12 +273,12 @@ function Register() {
               <h3>Loader Information</h3>
               <div className="form-group">
                 <label htmlFor="companyName">Company Name</label>
-                <input type="text" id="companyName" name="companyName" placeholder="Enter company name" value={formData.companyName} onChange={handleChange} maxLength={50} required />
+                <input type="text" id="companyName" name="companyName" placeholder="Enter company name" value={formData.companyName} onChange={handleChange} maxLength={30} required />
               </div>
 
               <div className="form-group">
                 <label htmlFor="businessType">Business Type</label>
-                <input type="text" id="businessType" name="businessType" placeholder="Example: Manufacturing, Textiles, FMCG" value={formData.businessType} onChange={handleChange} maxLength={50} required />
+                <input type="text" id="businessType" name="businessType" placeholder="Example: Manufacturing, Textiles, FMCG" value={formData.businessType} onChange={handleChange} maxLength={30} required />
               </div>
 
               <div className="form-group">
@@ -301,19 +301,19 @@ function Register() {
 
               <div className="form-group">
                 <label htmlFor="address">Warehouse Address</label>
-                <input type="text" id="address" name="address" placeholder="NO:1,XYZ Street" value={formData.address} onChange={handleChange} maxLength={50} required />
+                <input type="text" id="address" name="address" placeholder="NO:1,XYZ Street" value={formData.address} onChange={handleChange} maxLength={30} required />
               </div>
             </div>
           )}
 
           <div className="form-group">
             <label htmlFor="password">Password</label>
-            <input type="password" id="password" name="password" placeholder="Enter your password" value={formData.password} onChange={handleChange} maxLength={50} required autoComplete="new-password" />
+            <input type="password" id="password" name="password" placeholder="Enter your password" value={formData.password} onChange={handleChange} maxLength={30} required autoComplete="new-password" />
           </div>
 
           <div className="form-group">
             <label htmlFor="confirmPassword">Confirm Password</label>
-            <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm your password" value={formData.confirmPassword} onChange={handleChange} maxLength={50} required autoComplete="new-password" />
+            <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm your password" value={formData.confirmPassword} onChange={handleChange} maxLength={30} required autoComplete="new-password" />
           </div>
 
           <button type="submit" className="primary-button" disabled={loading}>
