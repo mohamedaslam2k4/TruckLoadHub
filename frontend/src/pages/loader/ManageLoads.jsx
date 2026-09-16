@@ -185,15 +185,15 @@ function ManageLoads() {
                 <div className="form-grid">
                   <div className="form-group">
                     <label htmlFor="pickup">Pickup Location</label>
-                    <input type="text" id="pickup" name="pickup" placeholder="Eg: Mumbai" value={formData.pickup} onChange={handleChange} maxLength={30} required />
+                    <input type="text" id="pickup" name="pickup" placeholder="Eg: Mumbai" value={formData.pickup} onChange={handleChange} maxLength={15} required />
                   </div>
                   <div className="form-group">
                     <label htmlFor="destination">Drop Location</label>
-                    <input type="text" id="destination" name="destination" placeholder="Eg: Pune" value={formData.destination} onChange={handleChange} maxLength={30} required />
+                    <input type="text" id="destination" name="destination" placeholder="Eg: Pune" value={formData.destination} onChange={handleChange} maxLength={15} required />
                   </div>
                   <div className="form-group">
                     <label htmlFor="loadType">Load Type</label>
-                    <input type="text" id="loadType" name="loadType" placeholder="Eg: General" value={formData.loadType} onChange={handleChange} maxLength={30} required />
+                    <input type="text" id="loadType" name="loadType" placeholder="Eg: General" value={formData.loadType} onChange={handleChange} maxLength={15} required />
                   </div>
                   <div className="form-group">
                     <label htmlFor="truckType">Truck Type</label>
