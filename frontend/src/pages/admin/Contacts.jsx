@@ -216,8 +216,8 @@ function Contacts() {
         .driver-row span { color: #666; font-size: 12px; flex-shrink: 0; }
         .driver-row strong { font-size: 12px; text-align: right; color: #111; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; flex-grow: 1; min-width: 0; }
         .message-box { padding: 8px 10px; background: #ffffff; border: 1px solid #e2e2e2; border-radius: 6px; margin-bottom: 8px; }
-        .message-label { display: block; font-size: 10px; font-weight: 700; color: #666;  margin-bottom: 2px; }
-        .message-text { margin: 0; font-size: 13px; color: #333; line-height: 1.4; word-break: break-word; }
+        .message-label { display: block; font-size: 12px; font-weight: 700; color: #666;  margin-bottom: 2px; }
+        .message-text { margin: 0; font-size: 12px; color: #333; line-height: 1.4; word-break: break-word; }
         .action-footer { display: flex; justify-content: center; align-items: center; }
         .resolve-btn { width: 100%; padding: 8px 0; border: none; border-radius: 6px; background: #1d4ed8; color: white; font-size: 14px; font-weight: 600; cursor: pointer; transition: background 0.2s; }
         .resolve-btn:hover { background: #1e40af; }
