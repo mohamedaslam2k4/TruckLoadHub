@@ -317,7 +317,7 @@ function ManageLoads() {
         .form-grid { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr;column-gap:8px }
         .form-group { margin-bottom: 16px; }
         .form-group label { display: block; margin-bottom:5px; font-weight: 600; }
-        .form-group input, .form-group textarea { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; font-size: 14px; font-family: inherit; }
+        .form-group input,.form-group select.form-group textarea { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; font-size: 14px; font-family: inherit;background-color: white; }
         .form-group textarea { resize: vertical; }
         .form-group input:focus, .form-group textarea:focus { outline: none; border-color: #222; }
         .create-button { width: 100%; padding: 12px; border: none; border-radius: 6px; background: #222; color: white; font-weight: 600; cursor: pointer;font-size: 14px; }
