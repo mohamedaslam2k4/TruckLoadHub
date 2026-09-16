@@ -226,7 +226,7 @@ function ManageLoads() {
                 </div>
                 <div className="form-group">
                   <label htmlFor="description">Description</label>
-                  <textarea id="description" name="description" rows="4" placeholder="Enter additional load details..." value={formData.description} onChange={handleChange} maxLength={200} required />
+                  <textarea id="description" name="description" rows="4" placeholder="Enter additional load details..." value={formData.description} onChange={handleChange} maxLength={100} required />
                 </div>
                 <button type="submit" className="create-button" disabled={submitting}>
                   {submitting ? "Creating Load..." : "Create Load"}
